@@ -1,0 +1,32 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.numbers {
+    margin: auto;
+    margin-top: 10px;
+    text-align: center;
+    width: 200px;
+    height: auto;
+}
+
+.output {
+    width: 200px;
+    height: 200px;
+    border: 2px black solid;
+    margin: auto;
+}
+
+.output textarea {
+    margin: auto;
+    height: 100%;
+    width: 100%;
+    resize: none;
+}
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}

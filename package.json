@@ -4,7 +4,7 @@
   "description": "�JsRojekti",
   "main": "www.js",
   "scripts": {
-    "test": "test"
+    "bsync": "browser-sync start --proxy \"localhost:1337\" --files \"www\\**.*\""
   },
   "repository": {
     "type": "git",
@@ -16,9 +16,13 @@
     "url": "https://github.com/Snekw/jsRojektiV2/issues"
   },
   "homepage": "https://github.com/Snekw/jsRojektiV2",
-  "devDependencies":{
-	"browser-sync": "^2.18.8"
+  "devDependencies": {
+    "browser-sync": "^2.18.8"
   },
-  "dependencies":{
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "debug": "^2.6.1",
+    "express": "^4.14.1",
+    "mongoose": "^4.8.5"
   }
 }
