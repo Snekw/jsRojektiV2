@@ -1,0 +1,24 @@
+{
+  "name": "jsRojektiV2",
+  "version": "0.0.1",
+  "description": "�JsRojekti",
+  "main": "www.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Snekw/jsRojektiV2.git"
+  },
+  "author": "Ilkka Kuosmanen, Niko Heikkinen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Snekw/jsRojektiV2/issues"
+  },
+  "homepage": "https://github.com/Snekw/jsRojektiV2",
+  "devDependencies":{
+	"browser-sync": "^2.18.8"
+  },
+  "dependencies":{
+  }
+}

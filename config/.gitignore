@@ -3,3 +3,4 @@
 .log
 **/*configDev.js
 **/*ConfigDev.js
+node_modules
