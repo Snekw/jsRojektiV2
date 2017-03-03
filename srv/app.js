@@ -7,7 +7,7 @@ let debug = require('debug')('Api:app');
 let path = require('path');
 // let logger = require('morgan');
 let bodyParser = require('body-parser');
-let config = require('../helpers/configStub')('main');
+let config = require('./helpers/configStub')('main');
 // let common = require('../lib/common');
 
 debug('Initialize express');
@@ -16,7 +16,7 @@ debug('Express initialized');
 
 //Setup db
 // debug('Start setup db');
-// require('../db/setup');
+require('./db/setup');
 // debug('db setup finished');
 
 
@@ -46,6 +46,10 @@ app.use(express.static('www'));
 //Api routes
 // app.use('/auth', auth);
 // debug('Adding routes finished');
+
+//Routes
+let baseRoutes = require('./routes/routes');
+app.use('/', baseRoutes);
 
 //Catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -9,7 +9,7 @@ let debug = require('debug')('Api:server');
 let https = require('https');
 let http = require('http');
 let fs = require('fs');
-let config = require('../helpers/configStub')('main');
+let config = require('./helpers/configStub')('main');
 debug('Starting express...');
 
 /**

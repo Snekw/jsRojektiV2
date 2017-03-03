@@ -6,7 +6,6 @@ module.exports = {
   },
   
   db:{
-    connectionString: 'mongodb://localhost/jsRojektiV2',
-    enabled: true
+    connectionString: 'mongodb://localhost/jsRojekti'
   }
 };

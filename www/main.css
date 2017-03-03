@@ -26,6 +26,10 @@ html, body {
     resize: none;
 }
 
+.no-resize{
+    resize: none;
+}
+
 .col-centered {
     float: none;
     margin: 0 auto;

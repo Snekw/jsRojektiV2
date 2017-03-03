@@ -6,8 +6,8 @@
 "use strict";
 module.exports = function(conf){
   if (process.env.SNW_FORUM_API_DEV){
-    return require('../config/' + conf + 'ConfigDev');
+    return require('../../config/' + conf + 'ConfigDev');
   }else{
-    return require('../config/' + conf + 'Config');
+    return require('../../config/' + conf + 'Config');
   }
 };
