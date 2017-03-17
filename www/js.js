@@ -128,6 +128,12 @@ for (var i = 0; i < groups.length; i++) {
   seleBox.appendChild(nGroup);
 }
 
+//Create last option which is add function
+var nOpt = document.createElement("option");
+nOpt.value = "Lisää kaava";
+nOpt.innerHTML = "Lisää kaava";
+nGroup.appendChild(nOpt);
+
 //Get the function object associated with the selected function
 function getSelectedFunction() {
   var f = {};
@@ -143,6 +149,13 @@ function getSelectedFunction() {
 }
 
 function selectChanged() {
+
+  if (seleBox[seleBox.selectedIndex].text == "Lisää kaava"){
+    $("#myModal").modal();
+    createModal();
+    return;
+  }
+
   var f = getSelectedFunction();
   //Delete old input boxes
   inputs.innerHTML = "";
@@ -214,6 +227,8 @@ document.addEventListener('keyup', function (e) {
     eval();
   }
 });
+
+
 
 //Load default selection
 selectChanged(seleBox);
