@@ -126,12 +126,16 @@ function setupFuncs(f) {
       nOpt.innerHTML = groups[i].funcs[d].name;
       nGroup.appendChild(nOpt);
     }
+
+//Create last option which is add function
+    var nOpt = document.createElement("option");
+    nOpt.value = "Lisää kaava";
+    nOpt.innerHTML = "Lisää kaava";
+    nGroup.appendChild(nOpt);
+
     //Add
     seleBox.appendChild(nGroup);
   }
-
-//Load default selection
-  selectChanged(seleBox);
 }
 
 //Get the function object associated with the selected function
@@ -149,6 +153,12 @@ function getSelectedFunction() {
 }
 
 function selectChanged() {
+
+  if (seleBox[seleBox.selectedIndex].text == "Lisää kaava"){
+    createModal();
+    return;
+  }
+
   var f = getSelectedFunction();
   //Delete old input boxes
   inputs.innerHTML = "";
@@ -221,4 +231,5 @@ document.addEventListener('keyup', function (e) {
   }
 });
 
-getFuncs();
+// getFuncs();
+setupFuncs(funcs);

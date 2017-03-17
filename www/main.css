@@ -34,3 +34,7 @@ html, body {
     float: none;
     margin: 0 auto;
 }
+
+.hide {
+    display: none;
+}
