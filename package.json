@@ -5,7 +5,7 @@
   "main": "www.js",
   "scripts": {
     "bsync": "browser-sync start --proxy \"localhost:1337\" --files \"www\\**.*\"",
-    "run": "node ./srv/server.js"
+    "run": "set SNW_DEV=true && node ./srv/server.js"
   },
   "repository": {
     "type": "git",
