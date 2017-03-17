@@ -14,7 +14,7 @@
  */
 "use strict";
 function getFuncs() {
-  let xhr = new XMLHttpRequest();
+  var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = checkFuncReceived;
   xhr.open('GET', 'funcs');
   xhr.send();
@@ -27,8 +27,8 @@ function checkFuncReceived(e) {
 }
 
 function funcsReceived(e) {
-  let data = JSON.parse(e.target.response).data;
-  for (let i = 0; i < data.length; i++) {
+  var data = JSON.parse(e.target.response).data;
+  for (var i = 0; i < data.length; i++) {
     data[i].func = Function('inputs', data[i].function);
   }
   setupFuncs(data);
@@ -39,14 +39,12 @@ function addFunc(data) {
     return;
   }
 
-  let xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = (e)=>{
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = (e) => {
     if (e.target.readyState == 4) {
       if (e.target.status == 200) {
         funcs.push(data);
         setupFuncs(funcs);
-        console.log(data);
-        console.log('Success');
       } else {
         console.log('Failed');
       }

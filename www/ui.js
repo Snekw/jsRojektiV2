@@ -1,16 +1,17 @@
 function addInputs() {
-	var m = document.getElementById('minputs');
-	var div = document.getElementById('inputs-template');
+  var m = document.getElementById('minputs');
+  var div = document.getElementById('inputs-template');
 
-	var clone = div.cloneNode(true);
-	clone.classList.remove('hide');
-	m.appendChild(clone);
+  var clone = div.cloneNode(true);
+  clone.classList.remove('hide');
+  clone.removeAttribute('id');
+  m.appendChild(clone);
 }
 
 function removeInputs(e) {
-	var parent = e.parentElement;
+  var parent = e.parentElement;
 
-	parent.parentElement.removeChild(parent);
+  parent.parentElement.removeChild(parent);
 }
 
 function createModal() {
