@@ -4,7 +4,8 @@
   "description": "�JsRojekti",
   "main": "www.js",
   "scripts": {
-    "bsync": "browser-sync start --proxy \"localhost:1337\" --files \"www\\**.*\""
+    "bsync": "browser-sync start --proxy \"localhost:1337\" --files \"www\\**.*\"",
+    "run": "node ./srv/server.js"
   },
   "repository": {
     "type": "git",
