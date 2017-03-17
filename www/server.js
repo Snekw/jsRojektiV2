@@ -13,18 +13,46 @@
  * THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 "use strict";
-let mongoose = require('mongoose');
+function getFuncs() {
+  let xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = checkFuncReceived;
+  xhr.open('GET', 'funcs');
+  xhr.send();
+}
 
-let _functionSchema = new mongoose.Schema({
-  author: String,
-  name: String,
-  inputs: [{
-    name: String,
-    unit: String
-  }],
-  retUnit: String,
-  group: String,
-  function: String
-});
+function checkFuncReceived(e) {
+  if (e.target.readyState == 4 && e.target.status == 200) {
+    funcsReceived(e);
+  }
+}
 
-mongoose.model('function', _functionSchema);
+function funcsReceived(e) {
+  let data = JSON.parse(e.target.response).data;
+  for (let i = 0; i < data.length; i++) {
+    data[i].func = Function('inputs', data[i].function);
+  }
+  console.log(data);
+  setupFuncs(data);
+}
+
+function addFunc(data) {
+  if (!data.name && !data.group && !data.inputs && !data.retUnit && !data.function) {
+    return;
+  }
+
+  let xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = addFuncResponse;
+  xhr.open('POST', 'addFunc');
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.send(JSON.stringify(data));
+}
+
+function addFuncResponse(e) {
+  if (e.target.readyState == 4) {
+    if (e.target.status == 200) {
+      console.log('Success');
+    } else {
+      console.log('Failed');
+    }
+  }
+}

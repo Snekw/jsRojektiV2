@@ -1,11 +1,12 @@
 "use strict";
 module.exports = {
-  server:{
+  server: {
     useHttps: false,
     CORS: 'http://localhost:1337'
   },
-  
-  db:{
-    connectionString: 'mongodb://localhost/jsRojekti'
+
+  db: {
+    connectionString: 'mongodb://localhost/jsRojekti',
+    author: 'Snekw'
   }
 };

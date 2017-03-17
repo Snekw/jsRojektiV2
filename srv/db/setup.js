@@ -20,3 +20,6 @@ let mongoose = require('mongoose'),
 mongoose.Promise = global.Promise;
 debug('Starting connection to db.');
 mongoose.connect(config.db.connectionString, config.db.options);
+mongoose.connection.on('connected', () => {
+  debug('Connected.');
+});

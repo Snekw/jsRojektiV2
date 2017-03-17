@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/Snekw/jsRojektiV2",
   "devDependencies": {
-    "browser-sync": "^2.18.8"
+    "bootstrap": "^3.3.7",
+    "browser-sync": "^2.18.8",
+    "jquery": "^3.2.0"
   },
   "dependencies": {
     "body-parser": "^1.16.1",

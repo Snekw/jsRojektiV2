@@ -83,49 +83,55 @@ var output = document.getElementById('output');
 //Group array used for creation of inputs
 var groups = [];
 
-
+function setupFuncs(f) {
+  funcs = f;
 //Loop through all of the functions and categorize them
-for (var i = 0; i < funcs.length; i++) {
-  var found = false;
-  //Look for exisiting group
-  for (var d = 0; d < groups.length; d++) {
-    if (groups[d].name == funcs[i].group) {
-      found = true;
-      break;
-    }
-  }
-  if (!found) {
-    //Group not found create a new group
-    var t = {
-      name: funcs[i].group,
-      funcs: [funcs[i]]
-    };
-    groups.push(t);
-  } else {
-    //Group found add function to the groups functions
-    for (var x = 0; x < groups.length; x++) {
-      if (groups[x].name == funcs[i].group) {
-        groups[x].funcs.push(funcs[i]);
+  for (var i = 0; i < funcs.length; i++) {
+    var found = false;
+    //Look for exisiting group
+    for (var d = 0; d < groups.length; d++) {
+      if (groups[d].name == funcs[i].group) {
+        found = true;
         break;
       }
     }
+    if (!found) {
+      //Group not found create a new group
+      var t = {
+        name: funcs[i].group,
+        funcs: [funcs[i]]
+      };
+      groups.push(t);
+    } else {
+      //Group found add function to the groups functions
+      for (var x = 0; x < groups.length; x++) {
+        if (groups[x].name == funcs[i].group) {
+          groups[x].funcs.push(funcs[i]);
+          break;
+        }
+      }
+    }
   }
-}
 
 //Create option groups and options for the selection box
-for (var i = 0; i < groups.length; i++) {
-  //Create a new group
-  var nGroup = document.createElement("optgroup");
-  nGroup.label = groups[i].name;
-  //Create options inside the group
-  for (var d = 0; d < groups[i].funcs.length; d++) {
-    var nOpt = document.createElement("option");
-    nOpt.value = groups[i].funcs[d].name;
-    nOpt.innerHTML = groups[i].funcs[d].name;
-    nGroup.appendChild(nOpt);
+  seleBox.innerHTML = '';
+  for (var i = 0; i < groups.length; i++) {
+    //Create a new group
+    var nGroup = document.createElement("optgroup");
+    nGroup.label = groups[i].name;
+    //Create options inside the group
+    for (var d = 0; d < groups[i].funcs.length; d++) {
+      var nOpt = document.createElement("option");
+      nOpt.value = groups[i].funcs[d].name;
+      nOpt.innerHTML = groups[i].funcs[d].name;
+      nGroup.appendChild(nOpt);
+    }
+    //Add
+    seleBox.appendChild(nGroup);
   }
-  //Add 
-  seleBox.appendChild(nGroup);
+
+//Load default selection
+  selectChanged(seleBox);
 }
 
 //Get the function object associated with the selected function
@@ -215,5 +221,4 @@ document.addEventListener('keyup', function (e) {
   }
 });
 
-//Load default selection
-selectChanged(seleBox);
+getFuncs();

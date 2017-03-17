@@ -16,7 +16,7 @@ debug('Starting express...');
  * Get port from environment and store in Express.
  */
 debug('ENV port: ' + process.env.port);
-let port = normalizePort(process.env.PORT || '1337');
+let port = normalizePort(process.env.PORT || '3001');
 app.set('port', port);
 debug('Used port: ' + port);
 
