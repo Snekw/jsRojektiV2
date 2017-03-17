@@ -84,7 +84,10 @@ var output = document.getElementById('output');
 var groups = [];
 
 function setupFuncs(f) {
-  funcs = f;
+  funcs = [];
+  for(var i = 0; i < f.length; i++){
+    funcs[i] = f[i];
+  }
 //Loop through all of the functions and categorize them
   for (var i = 0; i < funcs.length; i++) {
     var found = false;
