@@ -1,7 +1,10 @@
 function addInputs() {
 	var m = document.getElementById('minputs');
+	var div = document.getElementById('inputs-template');
 
-
+	var clone = div.cloneNode(true);
+	clone.classList.remove('hide');
+	m.appendChild(clone);
 }
 
 function removeInputs(e) {
