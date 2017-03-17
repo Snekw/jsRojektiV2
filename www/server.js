@@ -31,7 +31,6 @@ function funcsReceived(e) {
   for (let i = 0; i < data.length; i++) {
     data[i].func = Function('inputs', data[i].function);
   }
-  console.log(data);
   setupFuncs(data);
 }
 
@@ -41,7 +40,18 @@ function addFunc(data) {
   }
 
   let xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = addFuncResponse;
+  xhr.onreadystatechange = (e)=>{
+    if (e.target.readyState == 4) {
+      if (e.target.status == 200) {
+        funcs.push(data);
+        setupFuncs(funcs);
+        console.log(data);
+        console.log('Success');
+      } else {
+        console.log('Failed');
+      }
+    }
+  };
   xhr.open('POST', 'addFunc');
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.send(JSON.stringify(data));

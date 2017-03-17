@@ -84,7 +84,10 @@ var output = document.getElementById('output');
 var groups = [];
 
 function setupFuncs(f) {
-  funcs = f;
+  funcs = [];
+  for (var i = 0; i < f.length; i++) {
+    funcs[i] = f[i];
+  }
 //Loop through all of the functions and categorize them
   for (var i = 0; i < funcs.length; i++) {
     var found = false;
@@ -127,15 +130,18 @@ function setupFuncs(f) {
       nGroup.appendChild(nOpt);
     }
 
-//Create last option which is add function
-    var nOpt = document.createElement("option");
-    nOpt.value = "Lisää kaava";
-    nOpt.innerHTML = "Lisää kaava";
-    nGroup.appendChild(nOpt);
-
     //Add
     seleBox.appendChild(nGroup);
   }
+
+//Create last option which is add function
+  var nOpt = document.createElement("option");
+  nOpt.value = "Lisää kaava";
+  nOpt.innerHTML = "Lisää kaava";
+  seleBox.appendChild(nOpt);
+
+
+  selectChanged();
 }
 
 //Get the function object associated with the selected function
@@ -154,7 +160,7 @@ function getSelectedFunction() {
 
 function selectChanged() {
 
-  if (seleBox[seleBox.selectedIndex].text == "Lisää kaava"){
+  if (seleBox[seleBox.selectedIndex].text == "Lisää kaava") {
     createModal();
     return;
   }

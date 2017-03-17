@@ -6,7 +6,7 @@ module.exports = {
   },
 
   db: {
-    connectionString: 'mongodb://localhost/jsRojekti',
+    connectionString: 'mongodb://localhost/jsRojekti2',
     author: 'Snekw'
   }
 };

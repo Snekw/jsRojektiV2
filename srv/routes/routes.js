@@ -77,7 +77,7 @@ router.post('/addFunc', function (req, res, next) {
     return;
   }
   if (req.body.name && req.body.author && req.body.group && req.body.function && req.body.retUnit) {
-    models.function.find({name: req.body.name}, (err, func) => {
+    models.function.findOne({name: req.body.name}, (err, func) => {
       if (err || func) {
         res.status(400).json({message: 'Bad request'});
         return;
