@@ -2,75 +2,75 @@ var funcs = [
   //Teho
   {
     name: 'P=U*I',
-    numVar: 2,
     group: 'Teho',
-    inputs: [{name: 'U', unit: 'V'}, {name: 'I', unit: 'A'}],
+    inputs: {U: {unit: 'V', defVal: 0}, I: {unit: 'A', defVal: 0}},
     retUnit: 'W',
     func: function (inputs) {
-      return parseFloat(inputs[0]) * parseFloat(inputs[1]);
-    }
-  }, {
-    name: 'U=P/I',
-    numVar: 2,
-    group: 'Teho',
-    inputs: [{name: 'P', unit: 'W'}, {name: 'I', unit: 'A'}],
-    retUnit: 'V',
-    func: function (inputs) {
-      return parseFloat(inputs[0]) / parseFloat(inputs[1]);
-    }
-  }, {
-    name: 'I=P/U',
-    numVar: 2,
-    group: 'Teho',
-    inputs: [{name: 'P', unit: 'W'}, {name: 'U', unit: 'V'}],
-    retUnit: 'A',
-    func: function (inputs) {
-      return parseFloat(inputs[0]) / parseFloat(inputs[1]);
-    }
-  },
-  //Ohmin laki
-  {
-    name: 'U=R*I',
-    numVar: 2,
-    group: 'Ohmin laki',
-    inputs: [{name: 'R', unit: 'Ω'}, {name: 'I', unit: 'A'}],
-    retUnit: 'V',
-    func: function (inputs) {
-      return parseFloat(inputs[0]) * parseFloat(inputs[1]);
-    }
-  }, {
-    name: 'R=U/I',
-    numVar: 2,
-    group: 'Ohmin laki',
-    inputs: [{name: 'U', unit: 'V'}, {name: 'I', unit: 'A'}],
-    retUnit: 'V',
-    func: function (inputs) {
-      return parseFloat(inputs[0]) / parseFloat(inputs[1]);
-    }
-  }, {
-    name: 'I=U/R',
-    numVar: 2,
-    group: 'Ohmin laki',
-    inputs: [{name: 'U', unit: 'V'}, {name: 'R', unit: 'Ω'}],
-    retUnit: 'A',
-    func: function (inputs) {
-      return parseFloat(inputs[0]) / parseFloat(inputs[1]);
-    }
-  },
-  //Magneettivuon tiheys,
-  {
-    name: 'Suora virtajohdin B=(μ0/2*π*r)*I',
-    numVar: 2,
-    group: 'Magneettivuon tiheys',
-    inputs: [{name: 'r', unit: 'M'}, {name: 'I', unit: 'A'}],
-    retUnit: 'T',
-    func: function (inputs) {
-      var r = parseFloat(inputs[0]);
-      var i = parseFloat(inputs[1]);
-      var u = 1.2566371;
-      return (u / (2 * Math.PI * r) * i);
+      return inputs.U * inputs.I;
     }
   }
+  // }, {
+  //   name: 'U=P/I',
+  //   numVar: 2,
+  //   group: 'Teho',
+  //   inputs: [{name: 'P', unit: 'W'}, {name: 'I', unit: 'A'}],
+  //   retUnit: 'V',
+  //   func: function (inputs) {
+  //     return parseFloat(inputs[0]) / parseFloat(inputs[1]);
+  //   }
+  // }, {
+  //   name: 'I=P/U',
+  //   numVar: 2,
+  //   group: 'Teho',
+  //   inputs: [{name: 'P', unit: 'W'}, {name: 'U', unit: 'V'}],
+  //   retUnit: 'A',
+  //   func: function (inputs) {
+  //     return parseFloat(inputs[0]) / parseFloat(inputs[1]);
+  //   }
+  // },
+  // //Ohmin laki
+  // {
+  //   name: 'U=R*I',
+  //   numVar: 2,
+  //   group: 'Ohmin laki',
+  //   inputs: [{name: 'R', unit: 'Ω'}, {name: 'I', unit: 'A'}],
+  //   retUnit: 'V',
+  //   func: function (inputs) {
+  //     return parseFloat(inputs[0]) * parseFloat(inputs[1]);
+  //   }
+  // }, {
+  //   name: 'R=U/I',
+  //   numVar: 2,
+  //   group: 'Ohmin laki',
+  //   inputs: [{name: 'U', unit: 'V'}, {name: 'I', unit: 'A'}],
+  //   retUnit: 'V',
+  //   func: function (inputs) {
+  //     return parseFloat(inputs[0]) / parseFloat(inputs[1]);
+  //   }
+  // }, {
+  //   name: 'I=U/R',
+  //   numVar: 2,
+  //   group: 'Ohmin laki',
+  //   inputs: [{name: 'U', unit: 'V'}, {name: 'R', unit: 'Ω'}],
+  //   retUnit: 'A',
+  //   func: function (inputs) {
+  //     return parseFloat(inputs[0]) / parseFloat(inputs[1]);
+  //   }
+  // },
+  // //Magneettivuon tiheys,
+  // {
+  //   name: 'Suora virtajohdin B=(μ0/2*π*r)*I',
+  //   numVar: 2,
+  //   group: 'Magneettivuon tiheys',
+  //   inputs: [{name: 'r', unit: 'M'}, {name: 'I', unit: 'A'}],
+  //   retUnit: 'T',
+  //   func: function (inputs) {
+  //     var r = parseFloat(inputs[0]);
+  //     var i = parseFloat(inputs[1]);
+  //     var u = 1.2566371;
+  //     return (u / (2 * Math.PI * r) * i);
+  //   }
+  // }
 ];
 
 //The selction box
@@ -159,7 +159,6 @@ function getSelectedFunction() {
 }
 
 function selectChanged() {
-
   if (seleBox[seleBox.selectedIndex].text == "Lisää kaava") {
     createModal();
     return;
@@ -169,7 +168,10 @@ function selectChanged() {
   //Delete old input boxes
   inputs.innerHTML = "";
   //Generate new input boxes
-  for (var i = 0; i < f.inputs.length; i++) {
+  for (var key in f.inputs) {
+    if (!f.inputs.hasOwnProperty(key)) {
+      break;
+    }
     //The elements we need to show the inputs
     var nLabel = document.createElement('label');
     var nInput = document.createElement('input');
@@ -181,15 +183,15 @@ function selectChanged() {
 
     nDiv2.className += 'col-sm-8';
 
-    nLabel.innerHTML = f.inputs[i].name + ':';
+    nLabel.innerHTML = key + ':';
     nLabel.className += 'col-sm-2 control-label';
 
-    nLabelUnit.innerHTML = f.inputs[i].unit || 'NA';
+    nLabelUnit.innerHTML = f.inputs[key].unit || 'NA';
     nLabelUnit.className += 'col-sm-2 control-label';
 
-    nInput.value = f.inputs[i].defVal || 0;
+    nInput.value = f.inputs[key].defVal || 0;
     nInput.className += 'form-control';
-    nInput.id = 'n' + i;
+    nInput.id = 'n' + key;
 
     //Add the elements in correct order
     nDiv.appendChild(nLabel);
@@ -210,11 +212,13 @@ function eval() {
   var f = getSelectedFunction();
 
   var inputs = [];
-  //Loop trough the inputs we have and place the value to array
-  for (var i = 0; i < f.inputs.length; i++) {
-    var v = document.getElementById('n' + i);
-    var val = v.value.replace(',', '.');
-    inputs.push(val);
+  //Loop trough the inputs we have and place the value to object
+  for (var key in f.inputs) {
+    if (!f.inputs.hasOwnProperty(key)) {
+      break;
+    }
+    var v = document.getElementById('n' + key);
+    inputs[key] = parseFloat(v.value.replace(',', '.'));
   }
 
   //Call the function that actually calculates our value

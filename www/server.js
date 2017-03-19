@@ -40,16 +40,8 @@ function addFunc(data) {
   }
 
   var xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = (e) => {
-    if (e.target.readyState == 4) {
-      if (e.target.status == 200) {
-        funcs.push(data);
-        setupFuncs(funcs);
-      } else {
-        console.log('Failed');
-      }
-    }
-  };
+  var l = data;
+  xhr.onreadystatechange = addFuncResponse;
   xhr.open('POST', 'addFunc');
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.send(JSON.stringify(data));
@@ -58,7 +50,8 @@ function addFunc(data) {
 function addFuncResponse(e) {
   if (e.target.readyState == 4) {
     if (e.target.status == 200) {
-      console.log('Success');
+      funcs.push(data);
+      setupFuncs(funcs);
     } else {
       console.log('Failed');
     }

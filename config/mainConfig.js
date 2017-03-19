@@ -7,6 +7,7 @@ module.exports = {
 
   db: {
     connectionString: 'mongodb://localhost/jsRojekti2',
-    author: 'Snekw'
+    author: 'Snekw',
+    enabled: true
   }
 };

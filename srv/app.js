@@ -16,7 +16,9 @@ debug('Express initialized');
 
 //Setup db
 // debug('Start setup db');
-require('./db/setup');
+if (config.db.enabled) {
+  require('./db/setup');
+}
 // debug('db setup finished');
 
 
