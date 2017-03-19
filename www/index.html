@@ -45,7 +45,7 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <button type="button" class="close" data-dismiss="modal" onclick="modalClose()">&times;</button>
           <h4 class="modal-title">Lisää kaava</h4>
         </div>
         <div class="modal-body">
@@ -55,7 +55,7 @@
             <div id="minputs-body">
               <div id="minputs">
                 <div class="form-group form-inline form-group-sm">
-                  <input placeholder="Lyhenne" class="form-control">
+                  <input placeholder="Lyhenne" class="form-control" >
                   <input placeholder="Vakio arvo" class="form-control">
                   <input placeholder="Yksikkö" class="form-control">
                   <button type="button" class="btn btn-default btn-sm" onclick="removeInputs(this)">-</button>
@@ -89,7 +89,7 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" onclick="modalClose()">Close</button>
         </div>
       </div>
 
