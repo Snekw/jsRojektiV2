@@ -79,6 +79,8 @@ var seleBox = document.getElementById('seleBox');
 var inputs = document.getElementById('inputs');
 //Output textarea
 var output = document.getElementById('output');
+//Last seleBox index
+var lastIndex = 0;
 
 //Group array used for creation of inputs
 var groups = [];
@@ -161,7 +163,7 @@ function getSelectedFunction() {
 function selectChanged() {
 
   if (seleBox[seleBox.selectedIndex].text == "Lisää kaava") {
-    createModal();
+    createModal(lastIndex);
     return;
   }
 
@@ -204,6 +206,8 @@ function selectChanged() {
     var br = document.createElement('br');
     inputs.appendChild(br);
   }
+  //Last index set
+  lastIndex = seleBox.selectedIndex;
 }
 
 function eval() {
