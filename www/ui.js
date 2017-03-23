@@ -44,3 +44,46 @@ function modalClose() {
   seleBox.selectedIndex = li;
 }
 
+function modalAdd() {
+	var s = {
+		name: document.getElementById("name").value,
+		group: document.getElementById("group").value,
+		retUnit: document.getElementById("unit").value,
+		inputs: {},	
+		function: document.getElementById("form").value
+	}
+	
+	var child = document.getElementById("minputs").getElementsByTagName("DIV");
+	
+	for(var i = 0; i < child.length; i++){
+		var name = null;
+		var defValue = 0;
+		var unit = null;
+		var inputs = child[i].getElementsByTagName("INPUT");
+		
+		for(var j = 0; j < inputs.length; j++){
+			switch(inputs[j].dataset.type){
+				case "name":
+					name = inputs[j].value;
+				break;
+				
+				case "defVal":
+					defValue = inputs[j].value;
+				break;
+				
+				case "unit":
+					unit = inputs[j].value;
+				break;
+			}
+		}
+		
+		s.inputs[name] = {
+			defVal: defValue,
+			unit: unit
+		}
+		
+	}
+	
+	console.log(s);
+	
+}

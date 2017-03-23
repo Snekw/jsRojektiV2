@@ -67,28 +67,29 @@
               </div>
 
               <div id="inputs-template" class="form-group form-inline form-group-sm hide">
-                <input placeholder="Lyhenne" class="form-control">
-                <input placeholder="Vakio arvo" class="form-control">
-                <input placeholder="Yksikkö" class="form-control">
+                <input placeholder="Lyhenne" class="form-control" data-type="name">
+                <input placeholder="Vakio arvo" class="form-control" data-type="defVal">
+                <input placeholder="Yksikkö" class="form-control" data-type="unit">
                 <button type="button" class="btn btn-default btn-sm" onclick="removeInputs(this)">-</button>
               </div>
 
             </div>
 
             <div class="form-group form-group-sm">
-              <textarea placeholder="Kaava" class="form-control" style="resize: none;"></textarea>
+              <textarea id="form" placeholder="Kaava" class="form-control" style="resize: none;"></textarea>
             </div>
 
             <div class="form-group form-inline form-group-sm">
-              <input placeholder="Kaavan nimi" class="form-control">
-              <input placeholder="Ryhmä" class="form-control">
-              <input placeholder="Tulos yksikkö" class="form-control">
+              <input id="name" placeholder="Kaavan nimi" class="form-control">
+              <input id="group" placeholder="Ryhmä" class="form-control">
+              <input id="unit" placeholder="Tulos yksikkö" class="form-control">
             </div>
 
           </form>
 
         </div>
         <div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal" onclick="modalAdd()">Add</button>
           <button type="button" class="btn btn-default" data-dismiss="modal" onclick="modalClose()">Close</button>
         </div>
       </div>
