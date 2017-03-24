@@ -45,58 +45,59 @@ function modalClose() {
 }
 
 function modalAdd() {
-	//Set the object
-	var s = {
-		//Name the object
-		name: document.getElementById("name").value,
-		//Put it in group
-		group: document.getElementById("group").value,
-		//Get the unit
-		retUnit: document.getElementById("unit").value,
-		//Set up inputs object 
-		inputs: {},	
-		//Get the form
-		function: document.getElementById("form").value
-	}
-	
-	//Get div elements
-	var child = document.getElementById("minputs").getElementsByTagName("DIV");
-	//Loop trough every div
-	for(var i = 0; i < child.length; i++){
-		//input name
-		var name = null;
-		//Default value
-		var defValue = 0;
-		//Unit
-		var unit = null;
-		//Get input elements
-		var inputs = child[i].getElementsByTagName("INPUT");
-		//Loop trough every input
-		for(var j = 0; j < inputs.length; j++){
-			//Switch statement for data types and setting them
-			switch(inputs[j].dataset.type){
-				case "name":
-					name = inputs[j].value;
-				break;
-				
-				case "defVal":
-					defValue = inputs[j].value;
-				break;
-				
-				case "unit":
-					unit = inputs[j].value;
-				break;
-			}
-		}
-		
-		//Make object inside inputs object from one divW
-		s.inputs[name] = {
-			defVal: defValue,
-			unit: unit
-		}
-		
-	}
-	
-	console.log(s);
-	
+  //Set the object
+  var s = {
+    //Name the object
+    name: document.getElementById("name").value,
+    //Put it in group
+    group: document.getElementById("group").value,
+    //Get the unit
+    retUnit: document.getElementById("unit").value,
+    //Set up inputs object
+    inputs: {},
+    //Get the form
+    function: document.getElementById("form").value
+  }
+
+  //Get div elements
+  var child = document.getElementById("minputs").getElementsByTagName("DIV");
+  //Loop trough every div
+  for (var i = 0; i < child.length; i++) {
+    //input name
+    var name = null;
+    //Default value
+    var defValue = 0;
+    //Unit
+    var unit = null;
+    //Get input elements
+    var inputs = child[i].getElementsByTagName("INPUT");
+    //Loop trough every input
+    for (var j = 0; j < inputs.length; j++) {
+      //Switch statement for data types and setting them
+      switch (inputs[j].dataset.type) {
+        case "name":
+          name = inputs[j].value;
+          break;
+
+        case "defVal":
+          defValue = inputs[j].value;
+          break;
+
+        case "unit":
+          unit = inputs[j].value;
+          break;
+      }
+    }
+
+    //Make object inside inputs object from one divW
+    s.inputs[name] = {
+      defVal: defValue,
+      unit: unit
+    }
+
+  }
+
+  console.log(s);
+	addFunc(s);
+
 }

@@ -62,21 +62,30 @@ router.get('/funcs', function (req, res, next) {
               add = false;
               break;
           }
-          if (add)
+          if (add) {
             retUsers[i][key] = users[i]._doc[key];
+          }
         }
       }
+      let temp = {};
+      for (let d = 0; d < retUsers[i].inputs.length; d++) {
+        temp[retUsers[i].inputs[d].name] = {
+          unit: retUsers[i].inputs[d].unit,
+          defVal: retUsers[i].inputs[d].defVal
+        }
+      }
+      retUsers[i].inputs = temp;
     }
     return res.status(200).json({data: retUsers});
   });
 });
 
 router.post('/addFunc', function (req, res, next) {
-  if (req.body.author != config.db.author) {
-    res.status(400).json({message: 'Bad request'});
-    return;
-  }
-  if (req.body.name && req.body.author && req.body.group && req.body.function && req.body.retUnit) {
+  // if (req.body.author != config.db.author) {
+  //   res.status(400).json({message: 'Bad request'});
+  //   return;
+  // }
+  if (req.body.name && req.body.group && req.body.function && req.body.retUnit) {
     models.function.findOne({name: req.body.name}, (err, func) => {
       if (err || func) {
         res.status(400).json({message: 'Bad request'});
@@ -89,7 +98,16 @@ router.post('/addFunc', function (req, res, next) {
       newFunc.group = req.body.group;
       newFunc.function = req.body.function;
       newFunc.retUnit = req.body.retUnit;
-      newFunc.inputs = req.body.inputs;
+
+      for (let key in req.body.inputs) {
+        if (req.body.inputs.hasOwnProperty(key)) {
+          newFunc.inputs.push({
+            name: key,
+            defVal: req.body.inputs[key].defVal,
+            unit: req.body.inputs[key].unit
+          })
+        }
+      }
 
       newFunc.save((err) => {
         if (err)

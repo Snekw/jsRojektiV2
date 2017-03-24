@@ -20,7 +20,8 @@ let _functionSchema = new mongoose.Schema({
   name: String,
   inputs: [{
     name: String,
-    unit: String
+    unit: String,
+    defVal: String
   }],
   retUnit: String,
   group: String,

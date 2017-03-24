@@ -87,6 +87,7 @@ var groups = [];
 
 function setupFuncs(f) {
   funcs = [];
+  groups = [];
   for (var i = 0; i < f.length; i++) {
     funcs[i] = f[i];
   }
@@ -245,5 +246,5 @@ document.addEventListener('keyup', function (e) {
   }
 });
 
-// getFuncs();
-setupFuncs(funcs);
+getFuncs();
+// setupFuncs(funcs);
